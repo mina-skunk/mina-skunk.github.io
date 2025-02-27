@@ -1,0 +1,25 @@
+---
+import "../styles/global.css";
+import CommonHead from "../components/CommonHead.astro";
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <CommonHead title={title} description={description} />
+  </head>
+  <body
+    class="m-0 p-0 bg-latte-base dark:bg-mocha-base text-latte-text dark:text-mocha-text"
+  >
+    <nav class="m-0 p-0 shadow bg-pink-950">
+      <a class="m-0 p-4" href="/">Home</a>
+      <a class="m-0 p-4"href="/stations/amateur-radio">Amatrue Radio Stations</a>
+      <a class="m-0 p-4" href="/stations/fm-broadcast">FM Broadcast Stations</a>
+    </nav>
+    <main class="lg:max-w-5xl m-auto">
+      <slot />
+    </main>
+  </body>
+</html>

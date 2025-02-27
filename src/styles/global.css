@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+@theme {
+    --color-latte-base: #eff1f5;
+    --color-mocha-base: #1e1e2e;
+    --color-latte-text: #4c4f69;
+    --color-mocha-text: #cdd6f4;
+}

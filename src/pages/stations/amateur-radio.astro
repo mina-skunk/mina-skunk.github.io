@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+const stations = (await getCollection("stations"))
+  .filter((station) => station.data.categories.includes("Amateur Radio"))
+  .sort((a, b) => b.data.frequency.valueOf() - a.data.frequency.valueOf());
+
+const title = "Amateur Radio Stations";
+---
+
+<MainLayout title={title} description={title}>
+  <h1>{title}</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Callsign</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        stations.map((station) => (
+          <tr>
+            <td>
+              <a href={`/stations/${station.id}/`}>{station.data.name}</a>
+            </td>
+            <td>{station.data.callsign}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</MainLayout>

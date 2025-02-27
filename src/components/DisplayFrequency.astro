@@ -1,0 +1,22 @@
+---
+const { frequency, unit = "MHz" } = Astro.props;
+
+let inUnit = frequency;
+
+switch (unit) {
+  case "KHz":
+    inUnit = frequency / 1_000;
+    break;
+  case "GHz":
+    inUnit = frequency / 1_000_000_000;
+    break;
+  case "MHz":
+  default:
+    inUnit = frequency / 1_000_000;
+    break;
+}
+
+const display = `${inUnit.toFixed(3)} ${unit}`;
+---
+
+{display}
