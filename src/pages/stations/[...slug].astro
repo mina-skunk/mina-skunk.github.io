@@ -7,32 +7,74 @@ import MainLayout from "../../layouts/MainLayout.astro";
 
 export async function getStaticPaths() {
   const stations = await getCollection("stations");
-  return stations.map((post) => ({
-    params: { slug: post.id },
-    props: post,
-  }));
+  return stations
+    .sort((a, b) => a.data.frequency.valueOf() - b.data.frequency.valueOf())
+    .map((station, index, array) => ({
+      params: { slug: station.id },
+      props: {
+        station,
+        prev: index >= 0 && array[index - 1],
+        next: array[index + 1],
+      },
+    }));
 }
 type Props = CollectionEntry<"stations">;
 
-const station = Astro.props;
+const { station, prev, next } = Astro.props;
 const { Content } = await render(station);
 ---
 
 <MainLayout title={station.data.name} description={station.body}>
-  <h1 class="font-bold text-4xl text-center m-auto">{station.data.name}</h1>
+  <h1 class="font-bold text-2xl text-center m-auto">{station.data.name}</h1>
   <table class="border-collapse m-auto">
-    <tr class="border-t-2 border-b-2">
-      <td class="text-right pr-2">Callsign: </td>
+    <tr class="border-t-1">
+      <th class="text-right pr-2">Callsign</th>
       <td>{station.data.callsign}</td>
     </tr>
-    <tr class="border-t-2 border-b-2">
-      <td class="text-right pr-2">Frequency: </td>
+    <tr class="border-t-1">
+      <th class="text-right pr-2">Frequency</th>
       <td>
         <DisplayFrequency frequency={station.data.frequency} />
       </td>
     </tr>
+    {
+      station.data.offset && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">Offset</th>
+          <td>
+            <DisplayFrequency frequency={station.data.offset} />
+          </td>
+        </tr>
+      )
+    }
+    {
+      station.data.tone && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">Tone</th>
+          <td>{station.data.tone}</td>
+        </tr>
+      )
+    }
   </table>
-  <Prose>
-    <Content />
-  </Prose>
+  <div class="lg:max-w-5xl">
+    <Prose>
+      <Content />
+    </Prose>
+  </div>
+  <div class="flex flex-row flex-nowrap">
+    {
+      prev && (
+        <a href={`/stations/${prev.id}/`} title={prev.data.name}>
+          prev
+        </a>
+      )
+    }
+    {
+      next && (
+        <a href={`/stations/${next.id}/`} title={next.data.name}>
+          next
+        </a>
+      )
+    }
+  </div>
 </MainLayout>

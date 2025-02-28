@@ -5,7 +5,7 @@ frequency: 90300000
 website: https://kdvs.org/
 categories:
   - FM Broadcast
-fmContentType: station
+  - WFM
 ---
 
 90.3fm KDVS Davis Freeform Radio

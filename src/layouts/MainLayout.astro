@@ -1,8 +1,11 @@
 ---
 import "../styles/global.css";
 import CommonHead from "../components/CommonHead.astro";
+import ButtonLink from "../components/ButtonLink.astro";
 
 const { title, description } = Astro.props;
+
+const year = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -13,13 +16,16 @@ const { title, description } = Astro.props;
   <body
     class="m-0 p-0 bg-latte-base dark:bg-mocha-base text-latte-text dark:text-mocha-text"
   >
-    <nav class="m-0 p-0 shadow bg-pink-950">
-      <a class="m-0 p-4" href="/">Home</a>
-      <a class="m-0 p-4"href="/stations/amateur-radio">Amatrue Radio Stations</a>
-      <a class="m-0 p-4" href="/stations/fm-broadcast">FM Broadcast Stations</a>
+    <nav class="m-0 p-0 shadow bg-latte-mauve dark:bg-mocha-mauve text-mocha-text dark:text-latte-text flex flex-row box-border">
+      <ButtonLink invert="true" href="/">Home</ButtonLink>
+      <ButtonLink invert="true" href="#">Blog</ButtonLink>
+      <ButtonLink invert="true" href="/stations">Radio Stations</ButtonLink>
     </nav>
-    <main class="lg:max-w-5xl m-auto">
+    <main class="mx-auto">
       <slot />
     </main>
+    <footer class="mx-auto text-center">
+      Copyright © {year}
+    </footer>
   </body>
 </html>

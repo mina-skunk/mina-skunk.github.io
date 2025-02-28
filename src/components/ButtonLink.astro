@@ -1,0 +1,31 @@
+---
+const { href, invert = false } = Astro.props;
+---
+
+{
+  invert ? (
+    <a
+      href={href}
+      class="m-0 p-4
+           rounded
+         dark:hover:bg-latte-surface1
+         dark:active:bg-latte-surface2
+         hover:bg-mocha-surface1
+         active:bg-mocha-surface2"
+    >
+      <slot />
+    </a>
+  ) : (
+    <a
+      href={href}
+      class="m-0 p-4
+        rounded
+        hover:bg-latte-surface1
+        active:bg-latte-surface2
+        dark:hover:bg-mocha-surface1
+        dark:active:bg-mocha-surface2"
+    >
+      <slot />
+    </a>
+  )
+}

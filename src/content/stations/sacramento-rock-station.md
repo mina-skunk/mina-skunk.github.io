@@ -4,7 +4,7 @@ callsign: KRXQ
 frequency: 98500000
 categories:
   - FM Broadcast
-fmContentType: station
+  - WFM
 ---
 
 98 Rock Sacramento Rock Station

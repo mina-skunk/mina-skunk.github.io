@@ -14,7 +14,6 @@ const blog = defineCollection({
     preview: z.string().optional(),
     tags: z.array(z.string()).optional(),
     categories: z.array(z.string()).optional(),
-    fmContentType: z.string().default("blog"),
   }),
 });
 
@@ -28,13 +27,14 @@ const stations = defineCollection({
     website: z.string().url().optional(),
     offset: z.number().optional(),
     tone: z.number().optional(),
+    echolink: z.coerce.string().optional(),
+    grid: z.string().optional(),
     tags: z.array(z.string()).optional(),
     categories: z.array(z.string()).optional(),
-    fmContentType: z.string().default("station"),
   }),
 });
 
 export const collections = {
-  blog,
+  // blog,
   stations,
 };
