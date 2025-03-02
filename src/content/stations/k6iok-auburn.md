@@ -5,7 +5,7 @@ frequency: 145130000
 offset: -600000
 tone: 114.8 
 echolink: '838936'
-website: https://www.repeaterbook.com/repeaters/details.php?state_id=06&ID=14083
+website: https://k6iok.com/k6iok-repeaters
 grid: CM98lv
 categories:
   - Amateur Radio

@@ -37,7 +37,7 @@ const { title, description, stations } = Astro.props;
             <td>
               <DisplayFrequency frequency={station.data.offset} />
             </td>
-            <td>{station.data.tone}</td>
+            <td>{station.data.tone && station.data.tone.valueOf().toFixed(1)}</td>
             <td>{station.data.echolink}</td>
           </tr>
         ))

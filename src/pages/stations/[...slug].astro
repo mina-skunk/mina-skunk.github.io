@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, getEntry } from "astro:content";
 import { render } from "astro:content";
 import Prose from "../../components/Prose.astro";
 import DisplayFrequency from "../../components/DisplayFrequency.astro";
@@ -22,6 +22,9 @@ export async function getStaticPaths() {
 type Props = { [key: string]: CollectionEntry<"stations"> };
 
 const { station, prev, next } = Astro.props;
+const club =
+  station.data.club && (await getEntry("radioClubs", station.data.club));
+
 const { Content } = await render(station);
 ---
 
@@ -77,6 +80,64 @@ const { Content } = await render(station);
         <tr class="border-t-1">
           <th class="text-right pr-2">Grid</th>
           <td>{station.data.grid}</td>
+        </tr>
+      )
+    }
+    {
+      station.data.website && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">Website</th>
+          <td>
+            <a href={station.data.website}>{station.data.website}</a>
+          </td>
+        </tr>
+      )
+    }
+    {
+      station.data.repeaterworld && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">RepeaterWorld</th>
+          <td>
+            <a
+              href={`https://repeater.world/repeaters/${station.data.repeaterworld}`}
+            >
+              {station.data.repeaterworld}
+            </a>
+          </td>
+        </tr>
+      )
+    }
+    {
+      club && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">Club</th>
+          <td>
+            <a href={club.data.website}>{club.data.name}</a>
+          </td>
+        </tr>
+      )
+    }
+    {
+      station.data.tags && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">Tags</th>
+          <td>
+            {station.data.tags.map((tag) => (
+              <span class="text-xs rounded bg-mocha-surface1 p-0.5">{tag}</span>
+            ))}
+          </td>
+        </tr>
+      )
+    }
+    {
+      station.data.categories && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">Categories</th>
+          <td>
+            {station.data.categories.map((tag) => (
+              <span class="text-xs rounded bg-mocha-surface1 p-0.5">{tag}</span>
+            ))}
+          </td>
         </tr>
       )
     }

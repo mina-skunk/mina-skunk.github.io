@@ -7,6 +7,8 @@ offset: -600000
 tone: 123
 echolink: '360571'
 grid: CM89rj
+repeaterworld: k6lnk-2m-fm-stonyford-california-united-states
+club: california-amateur-radio-linking-association
 categories:
   - Amateur Radio
   - 2m

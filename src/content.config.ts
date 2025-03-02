@@ -26,6 +26,16 @@ const businesses = defineCollection({
   }),
 });
 
+const radioClubs = defineCollection({
+  loader: glob({ base: "./src/content/radio-clubs", pattern: "**/*.{md,mdx}" }),
+  // Type-check frontmatter using a schema
+  schema: z.object({
+    name: z.string(),
+    callsign: z.string().optional(),
+    website: z.string().url()
+  })
+});
+
 const stations = defineCollection({
   loader: glob({ base: "./src/content/stations", pattern: "**/*.{md,mdx}" }),
   // Type-check frontmatter using a schema
@@ -39,6 +49,8 @@ const stations = defineCollection({
     echolink: z.coerce.string().optional(),
     allstarlink: z.coerce.string().optional(),
     grid: z.string().optional(),
+    club: z.string().optional(),
+    repeaterworld: z.string().optional(),
     preview: z.string().optional(),
     tags: z.array(z.string()).optional(),
     categories: z.array(z.string()).optional(),
@@ -57,5 +69,7 @@ const links = defineCollection({
 export const collections = {
   blog,
   businesses,
+  radioClubs,
   stations,
+  links
 };

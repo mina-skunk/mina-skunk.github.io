@@ -2,21 +2,23 @@
 import { getCollection } from "astro:content";
 import MainLayout from "../../layouts/MainLayout.astro";
 import ButtonLink from "../../components/ButtonLink.astro";
+import { bigint } from "astro:schema";
 
-const businesses = (await getCollection("businesses"))
+const radioClubs = (await getCollection("radioClubs"))
   .sort((a, b) => a.data.name.localeCompare(b.data.name));
 
-const title = "Businesses";
-const description = "local businesses";
+const title = "Radio Clubs";
+const description = "local Amateur Radio Clubs";
 ---
 
 <MainLayout title={title} description={description}>
   <h1 class="text-2xl font-bold text-center m-auto">{title}</h1>
   <div class="flex flex-col flex-nowrap m-auto">
     {
-      businesses.map((business) => (
-        <ButtonLink href={`/businesses/${business.id}/`}>
-          {business.data.name}
+      radioClubs.map((club) => (
+        <ButtonLink href={club.data.website}>
+          <div>{club.data.name}</div>
+          <div class="text-sm">{club.data.callsign}</div>
         </ButtonLink>
       ))
     }
