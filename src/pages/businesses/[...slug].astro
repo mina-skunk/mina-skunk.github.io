@@ -19,7 +19,7 @@ const business = Astro.props;
 const { Content } = await render(business);
 ---
 
-<MainLayout title={business.data.name} description={business.data.description}>
+<MainLayout title={business.data.name} description={business.body}>
   <h1 class="font-bold text-2xl text-center m-auto">{business.data.name}</h1>
   <Prose>
     <Content />

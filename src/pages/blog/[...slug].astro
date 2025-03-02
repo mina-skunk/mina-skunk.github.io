@@ -17,10 +17,18 @@ type Props = CollectionEntry<"blog">;
 
 const blog = Astro.props;
 const { Content } = await render(blog);
+
+const dateDisplay = new Date(blog.data.date).toLocaleDateString("en-US", {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+});
+
 ---
 
 <MainLayout title={blog.data.title} description={blog.body}>
   <h1 class="font-bold text-2xl text-center m-auto">{blog.data.title}</h1>
+  <p class="text-sm text-center m-auto">{dateDisplay}</p>
   <Prose>
     <Content />
   </Prose>

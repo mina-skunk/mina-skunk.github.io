@@ -16,11 +16,12 @@ const description = "local Amateur Radio Stations";
   <table class="w-full border-collapse m-auto">
     <thead>
       <tr>
+        <th></th>
         <th>Name</th>
         <th>Callsign</th>
         <th>Frequency</th>
-        <th>Offset</th>
-        <th>Tone</th>
+        <th>Tags</th>
+        <th>Categories</th>
         <th>Note</th>
       </tr>
     </thead>
@@ -29,16 +30,27 @@ const description = "local Amateur Radio Stations";
         stations.map((station) => (
           <tr class="border-t-1">
             <td>
-              <a href={`/stations/${station.id}/`}>{station.data.name}</a>
+              <a href={`/stations/${station.id}/`}>ⓘ</a>
             </td>
+            <td>{station.data.name}</td>
             <td>{station.data.callsign}</td>
             <td>
               <DisplayFrequency frequency={station.data.frequency} />
             </td>
             <td>
-              <DisplayFrequency frequency={station.data.offset} />
+              {
+                station.data.tags && station.data.tags.map(tag => (
+                  <span class="text-xs rounded bg-mocha-surface1 p-0.5">{tag}</span>
+                ))
+              }
             </td>
-            <td>{station.data.tone}</td>
+            <td>
+              {
+                station.data.categories && station.data.categories.map(category => (
+                  <span class="text-xs rounded bg-mocha-surface1 p-0.5">{category}</span>
+                ))
+              }
+            </td>
             <td class="text-ellipsis">{station.body}</td>
           </tr>
         ))

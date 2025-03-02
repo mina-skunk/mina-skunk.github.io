@@ -1,4 +1,4 @@
-import { glob } from "astro/loaders";
+import { glob, file } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
@@ -7,10 +7,19 @@ const blog = defineCollection({
   // Type-check frontmatter using a schema
   schema: z.object({
     title: z.string(),
-    description: z.string(),
     // Transform string to Date object
     date: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
+    preview: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    categories: z.array(z.string()).optional(),
+  }),
+});
+
+const businesses = defineCollection({
+  loader: glob({ base: "./src/content/businesses", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    name: z.string(),
+    website: z.string().url().optional(),
     preview: z.string().optional(),
     tags: z.array(z.string()).optional(),
     categories: z.array(z.string()).optional(),
@@ -23,18 +32,30 @@ const stations = defineCollection({
   schema: z.object({
     name: z.string(),
     callsign: z.string(),
-    frequency: z.number(),
+    frequency: z.coerce.number(),
     website: z.string().url().optional(),
-    offset: z.number().optional(),
-    tone: z.number().optional(),
+    offset: z.coerce.number().optional(),
+    tone: z.coerce.number().optional(),
     echolink: z.coerce.string().optional(),
+    allstarlink: z.coerce.string().optional(),
     grid: z.string().optional(),
+    preview: z.string().optional(),
     tags: z.array(z.string()).optional(),
     categories: z.array(z.string()).optional(),
   }),
 });
 
+const links = defineCollection({
+  loader: file("./src/content/links.json"),
+  // Type-check frontmatter using a schema
+  schema: z.object({
+    name: z.string(),
+    url: z.string().url()
+  }),
+});
+
 export const collections = {
-  // blog,
+  blog,
+  businesses,
   stations,
 };

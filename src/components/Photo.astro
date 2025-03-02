@@ -1,0 +1,8 @@
+---
+import { Image } from 'astro:assets';
+
+const { src, full, text, ...attrs } = Astro.props;
+---
+<a href={full} title={text} target="_blank">
+    <Image src={src} title={text} alt={text} {...attrs} />
+</a>

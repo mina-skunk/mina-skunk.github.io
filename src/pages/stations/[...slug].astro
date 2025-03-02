@@ -19,7 +19,7 @@ export async function getStaticPaths() {
       },
     }));
 }
-type Props = CollectionEntry<"stations">;
+type Props = { [key: string]: CollectionEntry<"stations"> };
 
 const { station, prev, next } = Astro.props;
 const { Content } = await render(station);
@@ -53,6 +53,30 @@ const { Content } = await render(station);
         <tr class="border-t-1">
           <th class="text-right pr-2">Tone</th>
           <td>{station.data.tone}</td>
+        </tr>
+      )
+    }
+    {
+      station.data.echolink && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">Echolink</th>
+          <td>{station.data.echolink}</td>
+        </tr>
+      )
+    }
+    {
+      station.data.allstarlink && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">AllStarLink</th>
+          <td>{station.data.allstarlink}</td>
+        </tr>
+      )
+    }
+    {
+      station.data.grid && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">Grid</th>
+          <td>{station.data.grid}</td>
         </tr>
       )
     }

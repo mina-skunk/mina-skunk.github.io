@@ -1,0 +1,47 @@
+---
+import { type CollectionEntry } from "astro:content";
+import MainLayout from "./MainLayout.astro";
+import DisplayFrequency from "../components/DisplayFrequency.astro";
+
+type Props = { title: string, description?: string, stations: CollectionEntry<"stations">[] };
+
+const { title, description, stations } = Astro.props;
+---
+
+<MainLayout title={title} description={description}>
+  <h1 class="text-2xl font-bold text-center m-auto">{title}</h1>
+  <table class="w-full border-collapse m-auto">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Callsign</th>
+        <th>Frequency</th>
+        <th>Offset</th>
+        <th>Tone</th>
+        <th>Echolink</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        stations.map((station) => (
+          <tr class="border-t-1">
+            <td>
+              <a href={`/stations/${station.id}/`}>ⓘ</a>
+            </td>
+            <td>{station.data.name}</td>
+            <td>{station.data.callsign}</td>
+            <td>
+              <DisplayFrequency frequency={station.data.frequency} />
+            </td>
+            <td>
+              <DisplayFrequency frequency={station.data.offset} />
+            </td>
+            <td>{station.data.tone}</td>
+            <td>{station.data.echolink}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</MainLayout>

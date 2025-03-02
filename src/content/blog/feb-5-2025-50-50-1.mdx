@@ -1,0 +1,93 @@
+---
+title: 50 States 50 Rallys 1 Day
+date: Febuary 2, 2025
+---
+
+50 Rallys in one day nation wide.
+
+Hundreds gather at the California State Capitol to protest Donald Trump and Elon Musk's coup to dismantle the Federal Government.
+
+
+import Photo from "../../components/Photo.astro";
+
+{
+    [
+        {
+            preview: import("../../assets/photos/IMG_4787.webp"),
+            full: '/photos/IMG_4787.webp',
+            text: 'People with signs gather at the state capitol.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4789.webp"),
+            full: '/photos/IMG_4789.webp',
+            text: 'People with signs gather at the state capitol.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4792.webp"),
+            full: '/photos/IMG_4792.webp',
+            text: 'People with signs gather at the state capitol, from the bushes.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4794.webp"),
+            full: '/photos/IMG_4794.webp',
+            text: 'People with signs gather at the state capitol, landscape.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4795.webp"),
+            full: '/photos/IMG_4795.webp',
+            text: 'Sign says "DOGE" "D"epartment "O"f "G"overnment (Illigal) "E"limination.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4797.webp"),
+            full: '/photos/IMG_4797.webp',
+            text: 'Sign says "WTF DEPORT MUSK".'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4798.webp"),
+            full: '/photos/IMG_4798.webp',
+            text: 'Sign says 45 "/" slashed out.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4799.webp"),
+            full: '/photos/IMG_4799.webp',
+            text: 'Landscape of signage.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4800.webp"),
+            full: '/photos/IMG_4800.webp',
+            text: 'CHP equine.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4802.webp"),
+            full: '/photos/IMG_4802.webp',
+            text: '"Hiltler = Trump (never again) We the people have power in numbers" and "Do not obey in advance."'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4804.webp"),
+            full: '/photos/IMG_4804.webp',
+            text: 'US flag high above signs'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4805.webp"),
+            full: '/photos/IMG_4805.webp',
+            text: '"Hiltler = Trump (never again) We the people have power in numbers"'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4807.webp"),
+            full: '/photos/IMG_4807.webp',
+            text: 'US flag.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4810.webp"),
+            full: '/photos/IMG_4810.webp',
+            text: '"Pro Choice" and "ICE" X-ed out.'
+        },
+        {
+            preview: import("../../assets/photos/IMG_4811.webp"),
+            full: '/photos/IMG_4811.webp',
+            text: "It's a fascist takeover."
+        }
+    ].map(element => (
+        <Photo src={element.preview} full={element.full} text={element.text} />
+    ))
+}
