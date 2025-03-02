@@ -1,6 +1,6 @@
 ---
 name: Sierra Foothills ARC Repeater (1.25m)
-callsign: W6AK
+callsign: W6EK
 frequency: 223860000
 offset: -1600000
 tone: 110.9

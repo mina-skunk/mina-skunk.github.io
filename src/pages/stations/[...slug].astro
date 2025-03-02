@@ -4,6 +4,7 @@ import { render } from "astro:content";
 import Prose from "../../components/Prose.astro";
 import DisplayFrequency from "../../components/DisplayFrequency.astro";
 import MainLayout from "../../layouts/MainLayout.astro";
+import ButtonLink from "../../components/ButtonLink.astro";
 
 export async function getStaticPaths() {
   const stations = await getCollection("stations");
@@ -56,24 +57,23 @@ const { Content } = await render(station);
       )
     }
   </table>
-  <div class="lg:max-w-5xl">
-    <Prose>
-      <Content />
-    </Prose>
-  </div>
+  <Prose>
+    <Content />
+  </Prose>
   <div class="flex flex-row flex-nowrap">
     {
       prev && (
-        <a href={`/stations/${prev.id}/`} title={prev.data.name}>
-          prev
-        </a>
+        <ButtonLink href={`/stations/${prev.id}/`} title={prev.data.name}>
+          Prev
+        </ButtonLink>
       )
     }
+    <span class="grow"></span>
     {
       next && (
-        <a href={`/stations/${next.id}/`} title={next.data.name}>
-          next
-        </a>
+        <ButtonLink href={`/stations/${next.id}/`} title={next.data.name}>
+          Next
+        </ButtonLink>
       )
     }
   </div>

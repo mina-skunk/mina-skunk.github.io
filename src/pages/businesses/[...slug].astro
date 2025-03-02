@@ -1,0 +1,27 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import { render } from "astro:content";
+import Prose from "../../components/Prose.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+
+export async function getStaticPaths() {
+  const businesses = await getCollection("businesses");
+  return businesses
+    .sort((a, b) => b.data.name - a.data.name)
+    .map((business) => ({
+      params: { slug: business.id },
+      props: business,
+    }));
+}
+type Props = CollectionEntry<"businesses">;
+
+const business = Astro.props;
+const { Content } = await render(business);
+---
+
+<MainLayout title={business.data.name} description={business.data.description}>
+  <h1 class="font-bold text-2xl text-center m-auto">{business.data.name}</h1>
+  <Prose>
+    <Content />
+  </Prose>
+</MainLayout>

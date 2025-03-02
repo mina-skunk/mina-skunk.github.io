@@ -1,11 +1,11 @@
 ---
-const { href, invert = false } = Astro.props;
+const { href, invert = false, ...attrs } = Astro.props;
 ---
 
 {
   invert ? (
     <a
-      href={href}
+      href={href} {...attrs}
       class="m-0 p-4
            rounded
          dark:hover:bg-latte-surface1
@@ -17,7 +17,7 @@ const { href, invert = false } = Astro.props;
     </a>
   ) : (
     <a
-      href={href}
+      href={href} {...attrs}
       class="m-0 p-4
         rounded
         hover:bg-latte-surface1
