@@ -51,6 +51,10 @@ const stations = defineCollection({
     grid: z.string().optional(),
     club: z.string().optional(),
     repeaterworld: z.string().optional(),
+    repeaterbook: z.object({
+      stateid: z.coerce.string(),
+      id: z.coerce.string(),
+    }).optional(),
     preview: z.string().optional(),
     tags: z.array(z.string()).optional(),
     categories: z.array(z.string()).optional(),

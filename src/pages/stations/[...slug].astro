@@ -108,6 +108,20 @@ const { Content } = await render(station);
       )
     }
     {
+      station.data.repeaterbook && (
+        <tr class="border-t-1">
+          <th class="text-right pr-2">RepeaterBook</th>
+          <td>
+            <a
+              href={`https://www.repeaterbook.com/repeaters/details.php?state_id=${station.data.repeaterbook.stateid}&ID=${station.data.repeaterbook.id}`}
+            >
+              🔗
+            </a>
+          </td>
+        </tr>
+      )
+    }
+    {
       club && (
         <tr class="border-t-1">
           <th class="text-right pr-2">Club</th>
