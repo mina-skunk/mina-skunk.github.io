@@ -25,17 +25,6 @@ const businesses = defineCollection({
     categories: z.array(z.string()).optional(),
   }),
 });
-
-const radioClubs = defineCollection({
-  loader: glob({ base: "./src/content/radio-clubs", pattern: "**/*.{md,mdx}" }),
-  // Type-check frontmatter using a schema
-  schema: z.object({
-    name: z.string(),
-    callsign: z.string().optional(),
-    website: z.string().url()
-  })
-});
-
 const stations = defineCollection({
   loader: glob({ base: "./src/content/stations", pattern: "**/*.{md,mdx}" }),
   // Type-check frontmatter using a schema
@@ -73,7 +62,6 @@ const links = defineCollection({
 export const collections = {
   blog,
   businesses,
-  radioClubs,
   stations,
   links
 };
